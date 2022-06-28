@@ -1,7 +1,7 @@
 #!/bin/bash
-# run this file with sudo
-tar xzf php-8.1.7.tar.gz
-tar xzf xdebug-3.1.5.tgz
+# run this file with: $sudo scripts/build-php.sh
+tar xzf packages/php-8.1.7.tar.gz 
+tar xzf packages/xdebug-3.1.5.tgz
 cd php-8.1.7
 apt install -y \
     build-essential \
@@ -62,11 +62,12 @@ apt install -y \
             --with-zip \
             --with-pear \
             --with-sodium
-make test 
+echo "N" | make test 
 make install
 cp ../scripts/php.ini.development /usr/local/lib/php.ini
 cp ../scripts/www.conf.development /usr/local/etc/php-fpm.d/www.conf
 cp sapi/fpm/php-fpm /usr/local/bin
+cp ../scripts/php-fpm-service /usr/local/bin
 cp ../scripts/php-fpm.conf.development /usr/local/etc/php-fpm.conf
 cp sapi/fpm/php-fpm.service /lib/systemd/system
 # systemctl enable php-fpm.service
@@ -87,5 +88,5 @@ make
 cp modules/xdebug.so /usr/local/lib/php/extensions/debug-non-zts-20210902
 
 cd ..
-scripts/php-fpm
-service nginx restart
+# php-fpm-service start
+# service nginx restart
