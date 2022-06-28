@@ -1,0 +1,6 @@
+ALTER USER 'root'@'%' IDENTIFIED BY 'Ialksngdhj76#$vlkasd9';
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'Gray$cal3';
+CREATE USER 'edudate'@'%' IDENTIFIED BY '0IjexJ3iqnH0ZEf9!';
+GRANT ALL PRIVILEGES ON *.* TO 'edudate'@'%' WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;
